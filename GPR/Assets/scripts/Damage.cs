@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Damage : MonoBehaviour
 {
+    [SerializeField] public GameObject deathPanel;
     protected int Health = 100;
     [SerializeField] Text hitText;
 
@@ -13,11 +14,13 @@ public class Damage : MonoBehaviour
         if (Health == 0)
         {
             Destroy(gameObject);
-            Debug.Log("Dead");
+
+            deathPanel.SetActive(true);
+            Debug.Log("The End");
             Time.timeScale = 0;
         }
 
-        if (Input.GetKeyDown("Space"))
+        if (Input.GetKeyDown("space"))
         {
             Hit();
         }
@@ -27,7 +30,6 @@ public class Damage : MonoBehaviour
     {
         Health -= 10;
         Debug.Log(Health);
-        hitText.text = "HP:" + " " + Health.ToString();
-        transform.position = new Vector3(-5, 0, 0);
+        hitText.text = "Health:" + " " + Health.ToString();
     }
 }
